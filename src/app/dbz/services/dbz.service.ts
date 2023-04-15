@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { v4 as uuid } from 'uuid';
 
 import { Personaje } from "../interfaces/dbz.interface";
 
@@ -8,10 +9,12 @@ export class DbzService {
 
     private _personajes: Personaje[] = [
         {
+            id: uuid(),
             nombre: 'Goku',
             poder: 15000
         },
         {
+            id: uuid(),
             nombre: 'Vegeta',
             poder: 8500
         }
@@ -24,8 +27,11 @@ export class DbzService {
     constructor() {}
 
     agregarNuevoPersonaje(argumento: Personaje) {
-        console.log(argumento);
-        this._personajes.push(argumento);
+
+        const newCaracter: Personaje = { ...argumento, id: uuid() };
+
+        console.log(newCaracter);
+        this._personajes.push(newCaracter);
     }
 
 }
